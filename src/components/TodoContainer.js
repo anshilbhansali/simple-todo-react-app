@@ -40,9 +40,17 @@ class TodoContainer extends React.Component {
 
 	deleteOnClick = (todoID) => {
 		let new_todos = [];
+
 		for (const todo of this.state.todos){
-			if (todo.id !== todoID)
-				new_todos.push(todo);
+			if (todo.id === todoID){
+				if (!todo.completed){
+					if (window.confirm("Are you sure you want to delete it? You havent completed it..."))
+						continue
+				} else {
+					continue
+				}
+			}
+			new_todos.push(todo);
 		}
 
 		this.setState({
